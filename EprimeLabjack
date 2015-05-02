@@ -1,0 +1,228 @@
+Global Const LabJackUD_VB_Version = 3.03
+
+Declare Function OpenLabJack Lib "labjackud.dll" (ByVal DeviceType As Long, ByVal ConnectionType As Long, ByVal pAddress As String, ByVal FirstFound As Long, ByRef pHandle As Long) As Long
+Declare Function AddRequest Lib "labjackud.dll" (ByVal Handle As Long, ByVal IOType As Long, ByVal Channel As Long, ByVal Value As Double, ByVal x1 As Long, ByVal UserData As Double) As Long
+Declare Function Go Lib "labjackud.dll" () As Long
+Declare Function ePut Lib "labjackud.dll" (ByVal Handle As Long, ByVal IOType As Long, ByVal Channel As Long, ByVal Value As Double, ByVal x1 As Long) As Long
+
+'device types
+Global Const LJ_dtUE9 = 9
+Global Const LJ_dtU3 = 3
+Global Const LJ_dtU6 = 6
+
+'connection types
+Global Const LJ_ctUSB = 1
+Global Const LJ_ctETHERNET = 2
+Global Const LJ_ctUSB_RAW = 101
+Global Const LJ_ctETHERNET_RAW = 102
+
+'io types
+Global Const LJ_ioPUT_DIGITAL_BIT = 40
+Global Const LJ_ioPUT_DIGITAL_PORT = 45
+Global Const LJ_ioPIN_CONFIGURATION_RESET = 2017
+
+'error codes:  These will always be in the range of -1000 to 3999 for labView compatibility (+6000)
+Global Const LJE_NOERROR = 0
+ 
+Global Const LJE_INVALID_CHANNEL_NUMBER = 2
+Global Const LJE_INVALID_RAW_INOUT_PARAMETER = 3
+Global Const LJE_UNABLE_TO_START_STREAM = 4
+Global Const LJE_UNABLE_TO_STOP_STREAM = 5
+Global Const LJE_NOTHING_TO_STREAM = 6
+Global Const LJE_UNABLE_TO_CONFIG_STREAM = 7
+Global Const LJE_BUFFER_OVERRUN = 8
+Global Const LJE_STREAM_NOT_RUNNING = 9
+Global Const LJE_INVALID_PARAMETER = 10
+Global Const LJE_INVALID_STREAM_FREQUENCY = 11
+Global Const LJE_INVALID_AIN_RANGE = 12
+Global Const LJE_STREAM_CHECKSUM_ERROR = 13
+Global Const LJE_STREAM_COMMAND_ERROR = 14
+Global Const LJE_STREAM_ORDER_ERROR = 15
+Global Const LJE_AD_PIN_CONFIGURATION_ERROR = 16
+Global Const LJE_REQUEST_NOT_PROCESSED = 17
+
+Global Const LJE_SCRATCH_ERROR = 19
+Global Const LJE_DATA_BUFFER_OVERFLOW = 20
+Global Const LJE_ADC0_BUFFER_OVERFLOW = 21
+Global Const LJE_FUNCTION_INVALID = 22
+Global Const LJE_SWDT_TIME_INVALID = 23
+Global Const LJE_FLASH_ERROR = 24
+Global Const LJE_STREAM_IS_ACTIVE = 25
+Global Const LJE_STREAM_TABLE_INVALID = 26
+Global Const LJE_STREAM_CONFIG_INVALID = 27
+Global Const LJE_STREAM_BAD_TRIGGER_SOURCE = 28
+Global Const LJE_STREAM_INVALID_TRIGGER = 30
+Global Const LJE_STREAM_ADC0_BUFFER_OVERFLOW = 31
+
+Global Const LJE_STREAM_SAMPLE_NUM_INVALID = 33
+Global Const LJE_STREAM_BIPOLAR_GAIN_INVALID = 34
+Global Const LJE_STREAM_SCAN_RATE_INVALID = 35
+Global Const LJE_TIMER_INVALID_MODE = 36
+Global Const LJE_TIMER_QUADRATURE_AB_ERROR = 37
+Global Const LJE_TIMER_QUAD_PULSE_SEQUENCE = 38
+Global Const LJE_TIMER_BAD_CLOCK_SOURCE = 39
+Global Const LJE_TIMER_STREAM_ACTIVE = 40
+Global Const LJE_TIMER_PWMSTOP_MODULE_ERROR = 41
+Global Const LJE_TIMER_SEQUENCE_ERROR = 42
+Global Const LJE_TIMER_SHARING_ERROR = 43
+Global Const LJE_TIMER_LINE_SEQUENCE_ERROR = 44
+Global Const LJE_EXT_OSC_NOT_STABLE = 45
+Global Const LJE_INVALID_POWER_SETTING = 46
+Global Const LJE_PLL_NOT_LOCKED = 47
+Global Const LJE_INVALID_PIN = 48
+Global Const LJE_IOTYPE_SYNCH_ERROR = 49
+Global Const LJE_INVALID_OFFSET = 50
+Global Const LJE_FEEDBACK_IOTYPE_NOT_VALID = 51
+
+Global Const LJE_CANT_CONFIGURE_PIN_FOR_ANALOG = 67
+Global Const LJE_CANT_CONFIGURE_PIN_FOR_DIGITAL = 68
+Global Const LJE_TC_PIN_OFFSET_MUST_BE_4_TO_8 = 70
+
+Global Const LJE_SHT_CRC = 52
+Global Const LJE_SHT_MEASREADY = 53
+Global Const LJE_SHT_ACK = 54
+Global Const LJE_SHT_SERIAL_RESET = 55
+Global Const LJE_SHT_COMMUNICATION = 56
+
+Global Const LJE_AIN_WHILE_STREAMING = 57
+
+Global Const LJE_STREAM_TIMEOUT = 58
+Global Const LJE_STREAM_CONTROL_BUFFER_OVERFLOW = 59
+Global Const LJE_STREAM_SCAN_OVERLAP = 60
+
+'Firmware Version Related
+Global Const LJE_FIRMWARE_VERSION_IOTYPE = 61
+Global Const LJE_FIRMWARE_VERSION_CHANNEL = 62
+Global Const LJE_FIRMWARE_VERSION_VALUE = 63
+Global Const LJE_HARDWARE_VERSION_IOTYPE = 64
+Global Const LJE_HARDWARE_VERSION_CHANNEL = 65
+Global Const LJE_HARDWARE_VERSION_VALUE = 66
+
+Global Const LJE_LJTDAC_ACK_ERROR = 69
+
+Global Const LJE_MIN_GROUP_ERROR = 1000
+
+Global Const LJE_UNKNOWN_ERROR = 1001
+Global Const LJE_INVALID_DEVICE_TYPE = 1002
+Global Const LJE_INVALID_HANDLE = 1003
+Global Const LJE_DEVICE_NOT_OPEN = 1004
+Global Const LJE_NO_DATA_AVAILABLE = 1005
+Global Const LJE_NO_MORE_DATA_AVAILABLE = 1006
+Global Const LJE_LABJACK_NOT_FOUND = 1007
+Global Const LJE_COMM_FAILURE = 1008
+Global Const LJE_CHECKSUM_ERROR = 1009
+Global Const LJE_DEVICE_ALREADY_OPEN = 1010
+Global Const LJE_COMM_TIMEOUT = 1011
+Global Const LJE_USB_DRIVER_NOT_FOUND = 1012
+Global Const LJE_ANALOG_CONFIGURATION_ERROR = 1013
+Global Const LJE_INVALID_MODE = 1014
+
+Global Const LJE_DISCONNECT = 2000
+Global Const LJE_RECONNECT = 2001
+Global Const LJE_MIN_USER_ERROR = 3000
+Global Const LJE_MAX_USER_ERROR = 3999
+
+'Warnings are negative
+Global Const LJE_DEVICE_NOT_CALIBRATED = -1
+Global Const LJE_UNABLE_TO_READ_CALDATA = -2
+
+
+
+
+
+
+
+
+'Begin LabJack script written by Gordon Matthewson 2015
+
+Dim Trigger1 As Long
+Dim Trigger2 As Long
+Dim lngError As Long
+Dim lngHandle As Long
+Dim rev_channel As String
+
+Public Sub InitLabJack()
+	
+	'Open the first found LabJack U3 over USB.
+	lngError = OpenLabJack(LJ_dtU3, LJ_ctUSB, "1", 0, lngHandle)
+	
+	'Start by using the pin_configuration_reset IOType so that all
+	'pin assignments are in the factory default condition.
+	lngError = ePut(lngHandle, LJ_ioPIN_CONFIGURATION_RESET, 0, 0, 0)
+	If lngError <> 0 Then Err.Raise lngError + 50000 'Adding 50000 makes sure Labjack errors are recognized by VB as "user-defined"
+ 
+	'Configures all Ports (FIO0 - E107) as Digital Outputs
+	lngError = ePut(lngHandle, LJ_ioPUT_DIGITAL_PORT, 0, 0, 16)
+	
+End Sub
+
+
+
+Function TriggerLJ(Trigger1 As Long, Optional Trigger2 As Variant, Optional rev_channel As Variant) As Long
+	
+	'This function takes two inputs: the value for trigger one, and the value for trigger two and converts them both to binary,
+	'and then outputs the binary pattern for the thermode trigger on FIO0-FIO7, and the BIOPAC on EIO0-EIO7.
+	
+	Dim Trigger1bin(7) As Double
+	Dim Trigger2bin(7) As Double
+	
+	If TypeName(Trigger2) = "String" Then
+		rev_channel = Trigger2
+	End If
+	
+	'Converts Trigger1 into Binary, stores value in the array Trigger1Bin
+	Const Size As Integer = 7
+	Dim x, i As Integer
+	x = Trigger1
+	For i = 0 To Size
+		Trigger1Bin(Size-i) = x Mod 2
+		x = x\2 
+	Next i
+
+	'Converts Trigger2 into Binary, stores value in the array Trigger2bin
+	If Not IsMissing(Trigger2) And Not TypeName(Trigger2) = "String" Then
+		x = Trigger2
+		For i = 0 To Size
+			Trigger2bin(Size-i) = x Mod 2
+			x = x\2
+		Next i
+	End If
+
+	'Reverses the Binary Arrays.  Use rev_channel_a, rev_channel_b, and rev_channel_ab to reverse 
+	'the first, second, or both arrays, respectively.
+	If Not IsMissing(rev_channel) Then
+		If rev_channel = "rev_channel_a" Or rev_channel = "rev_channel_ab" Then
+			Dim Trigger1binrev(7) As Double
+			For i = 0 To Size
+				Trigger1binrev(i) = Trigger1bin(7 - i)
+			Next i
+			For i = 0 To Size
+				Trigger1bin(i) = Trigger1binrev (i)
+			Next i
+		End If
+		If rev_channel = "rev_channel_b" Or rev_channel = "rev_channel_ab" Then
+			Dim Trigger2binrev(7) As Double
+			For i = 0 To Size
+				Trigger2binrev(i) = Trigger2bin(7 - i)
+			Next i
+			For i = 0 To Size
+				Trigger2bin(i) = Trigger2binrev (i)
+			Next i
+		End If
+	End If
+
+	'Adds Trigger1 To the Queue Of FIO0-FIO7
+	For i = 0 To Size 
+	lngError = AddRequest(lngHandle, LJ_ioPUT_DIGITAL_BIT, i, Trigger1bin(i), 0, 0)
+	Next i
+
+	'Adds Trigger2 To the Queue Of EIO0-EIO7
+	For i = 8 To 15
+	lngError = AddRequest(lngHandle, LJ_ioPUT_DIGITAL_BIT, i, Trigger2bin(i-8), 0, 0)
+	Next i
+	
+	
+	'Executes both lists of requests
+	lngError = Go()
+
+End Function
