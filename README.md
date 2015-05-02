@@ -11,7 +11,7 @@ The TriggerLJ function in this package showed a maximum latency of 8 ms when usi
 
 #How-to:
 ##Background
-First, a quick note about how E-Prime actually works with the LabJack.  This section can be used for reference: if you’d like to skip to how to use the E-Prime functions in your experiment, go on to the next paragraph.
+First, a quick note about how E-Prime actually works with the LabJack.  This section can be used for reference: if you’d like to skip to how to use the E-Prime functions in your experiment, go on to the "function" section below.
 
 Within E-Prime, commands to the LabJack itself are made by setting the variable “lngError” equal to a particular LabJack driver command.  For example, within the InitLabJack function,  
 
@@ -30,7 +30,7 @@ Which would correspond to the global constant “LJE_LABJACK_NOT_FOUND”, as th
 
 ##Functions
 
-This package contains two E-Prime functions: InitLabJack, and TriggerLJ().  
+This package contains two E-Prime functions: InitLabJack, and TriggerLJ().  Copy and paste the 
 
 InitLabJack does three things: 
 
@@ -44,20 +44,18 @@ InitLabJack
 
 to an InLine script at the beginning of your experiment will call this function and get your LabJack ready to go.
 
-…
-
 Assuming there were no problems with InitLabJack, your LabJack is ready to send digital messages.  This can be achieved by calling the function:
 
 TriggerLJ(Trigger1, Trigger2 (optional), “rev_channel” (optional))
 
 This function takes up to three parameters: 
 
--Trigger1: A decimal number which will be converted to binary and trigger FIO0-FIO7
--Trigger2 (optional): A decimal number which will be converted to binary and trigger EIO0-EIO7 on the CB15
--“rev_channel” (optional): This parameter recognizes these three strings:
-	-"rev_channel_a”
-	-“rev_channel_b”
-	-“rev_channel_ab”
+*Trigger1: A decimal number which will be converted to binary and trigger FIO0-FIO7
+*Trigger2 (optional): A decimal number which will be converted to binary and trigger EIO0-EIO7 on the CB15
+*“rev_channel” (optional): This parameter recognizes these three strings:
+**"rev_channel_a”
+**“rev_channel_b”
+**“rev_channel_ab”
 
 	“rev_channel_a” will reverse your first number (00110001 would become 10001100), “rev_channel_b” will reverse your second number, and “rev_channel_ab” will reverse both numbers.  This parameter was added because the machinery in our particular lab is from Israel, where numbers are read right to left, thus creating a need for us to reverse our messages to this machine.  Remember to specify this input as a string by putting parentheses around it.
 
