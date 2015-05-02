@@ -86,6 +86,28 @@ command, which will reset all ports back to an OUTPUT-LOW status.
 This is what our setup looks like.
 ![Labjacksetup](/lj.jpg)
 
+###Parallel Port 1
+Labjack Port | Parallel Port Pin
+----------- | -----------------
+GND  | Pins 18-25
+FIO0 | Pin 2
+FIO1 | Pin 3
+FIO2 | Pin 4
+FIO3 | Pin 5
+FIO4 | Pin 6
+FIO5 | Pin 7
+FIO6 | Pin 8
+FIO7 | Pin 9
 
-
-
+###Parallel Port 2
+Labjack Port | Parallel Port Pin
+----------- | -----------------
+GND  | Pins 18-25
+EIO0 | Pin 2
+EIO1 | Pin 3
+EIO2 | Pin 4
+EIO3 | Pin 5
+EIO4 | Pin 6
+EIO5 | Pin 7
+EIO6 | Pin 8
+EIO7 | Pin 9
