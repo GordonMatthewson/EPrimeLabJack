@@ -30,7 +30,7 @@ Which would correspond to the global constant “LJE_LABJACK_NOT_FOUND”, as th
 
 ##Functions
 
-This package contains two E-Prime functions: InitLabJack, and TriggerLJ().  Copy and paste the 
+This package contains two E-Prime functions: InitLabJack, and TriggerLJ().  Copy and paste the "EPrimeLabJack" text into the user script of E-Prime (you can get to this by pressing Alt+5).
 
 InitLabJack does three things: 
 
@@ -38,7 +38,7 @@ InitLabJack does three things:
 2. Sets all pins to a factory default condition
 3. Sets all ports (including the EIO ports, if you have a CB15) as digital outputs
 
-This function is defined in the package file, but it needs to be initialized to actually perform these operations.  Adding
+This function is defined in the user script, but it needs to be initialized to actually perform these operations.  Adding
 
 InitLabJack
 
