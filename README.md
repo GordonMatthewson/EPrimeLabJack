@@ -84,7 +84,7 @@ command, which will reset all ports back to an OUTPUT-LOW status.
 #Our setup
 
 This is what our setup looks like.
-
+![Labjacksetup](/lj.jpg)
 
 
 
