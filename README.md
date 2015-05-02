@@ -1,7 +1,7 @@
 # EPrimeLabJack
-This is an E-Prime 2.0 Package file that allows E-Prime to send digital output signals from the Labjack U3 (labjack.com/u3).  This project was designed to allow the Labjack to replace a parallel port trigger system, as many modern desktops no longer support parallel ports.  Included is the E-Prime function TriggerLJ() that takes one or two decimal numbers, converts them into binary, and triggers FIO0-FIO7 (and EIO0-EIO7 on the CB15 if connected) with either a digital HIGH or LOW signal, depending on whether the digit is a 1 or a 0.  For example, TriggerLJ(49) would take the number 49, convert it to 00110001, output a HIGH signal on channels FIO2, FIO3, and FIO7, and a LOW signal on all the other channels.
+This is an E-Prime 2.0 function that allows E-Prime to send digital output signals from the Labjack U3 (labjack.com/u3).  This project was designed to allow the Labjack to replace a parallel port trigger system, as many modern desktops no longer support parallel ports.  Included is the E-Prime function TriggerLJ() that takes one or two decimal numbers, converts them into binary, and triggers FIO0-FIO7 (and EIO0-EIO7 on the CB15 if connected) with either a digital HIGH or LOW signal, depending on whether the digit is a 1 or a 0.  For example, TriggerLJ(49) would take the number 49, convert it to 00110001, output a HIGH signal on channels FIO2, FIO3, and FIO7, and a LOW signal on all the other channels.
 
-This package requires the LabJack UD Windows driver, which is available here: http://labjack.com/support/software.  
+This function requires the LabJack UD Windows driver, which is available here: http://labjack.com/support/software.  
 
 The constants are taken from the UD module for Visual Basic (http://labjack.com/support/ud/examples/visual-basic): unnecessary functions have been stripped out for simplicity, but this would be where to look if you want to add functions to use the Labjack in E-Prime for something other than sending triggers (i.e. receiving them).
 
@@ -27,6 +27,11 @@ Line: 001
 Error Number: 51007
 
 Which would correspond to the global constant “LJE_LABJACK_NOT_FOUND”, as this is set to 1007 under the “error codes” section of the package.
+
+
+
+
+
 
 This package contains two E-Prime functions: InitLabJack, and TriggerLJ().  
 
