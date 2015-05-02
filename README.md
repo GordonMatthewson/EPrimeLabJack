@@ -52,7 +52,8 @@ This function takes up to three parameters:
 
 *Trigger1: A decimal number which will be converted to binary and trigger FIO0-FIO7
 *Trigger2 (optional): A decimal number which will be converted to binary and trigger EIO0-EIO7 on the CB15
-*“rev_channel” (optional): This parameter recognizes these three strings:
+
+*“rev_channel” (optional): This parameter recognizes these three strings
 **"rev_channel_a”
 **“rev_channel_b”
 **“rev_channel_ab”
