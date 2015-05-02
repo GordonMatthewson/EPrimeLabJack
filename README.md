@@ -50,13 +50,12 @@ TriggerLJ(Trigger1, Trigger2 (optional), “rev_channel” (optional))
 
 This function takes up to three parameters: 
 
-*Trigger1: A decimal number which will be converted to binary and trigger FIO0-FIO7
-*Trigger2 (optional): A decimal number which will be converted to binary and trigger EIO0-EIO7 on the CB15
-
-*“rev_channel” (optional): This parameter recognizes these three strings
-**"rev_channel_a”
-**“rev_channel_b”
-**“rev_channel_ab”
+* Trigger1: A decimal number which will be converted to binary and trigger FIO0-FIO7
+* Trigger2 (optional): A decimal number which will be converted to binary and trigger EIO0-EIO7 on the CB15
+* “rev_channel” (optional): This parameter recognizes these three strings
+	* "rev_channel_a”
+	* “rev_channel_b”
+	* “rev_channel_ab”
 
 	“rev_channel_a” will reverse your first number (00110001 would become 10001100), “rev_channel_b” will reverse your second number, and “rev_channel_ab” will reverse both numbers.  This parameter was added because the machinery in our particular lab is from Israel, where numbers are read right to left, thus creating a need for us to reverse our messages to this machine.  Remember to specify this input as a string by putting parentheses around it.
 
