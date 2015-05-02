@@ -1,3 +1,6 @@
+'''Copy and paste this script in its entirety into the user section of E-Prime (you can get to this window by pressing Alt+5)
+
+
 Global Const LabJackUD_VB_Version = 3.03
 
 Declare Function OpenLabJack Lib "labjackud.dll" (ByVal DeviceType As Long, ByVal ConnectionType As Long, ByVal pAddress As String, ByVal FirstFound As Long, ByRef pHandle As Long) As Long
