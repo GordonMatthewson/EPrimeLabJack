@@ -161,7 +161,7 @@ End Sub
 
 
 
-Function TriggerLJ(Trigger1 As Long, Optional Trigger2 As Variant, Optional rev_channel As Variant) As Long
+Function TriggerLJ(Trigger1 As Variant, Optional Trigger2 As Variant, Optional rev_channel As Variant) As Long
 	
 	'This function takes two inputs: the value for trigger one, and the value for trigger two and converts them both to binary,
 	'and then outputs the binary pattern for the thermode trigger on FIO0-FIO7, and the BIOPAC on EIO0-EIO7.
