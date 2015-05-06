@@ -87,6 +87,7 @@ command, which will reset all ports back to an OUTPUT-LOW status.
 
 This is what our setup looks like.
 ![Labjacksetup](/lj.jpg)
+Note: there are probably almost twice as many wires as there need to be: this is because the wire that was laying around our department just happened to have a ground for each wire.  I think you really only need one ground per parallel port, but from what I've heard wrapping each wire with a ground helps protect the integrity of the signal over long distances.
 
 ###Parallel Port 1
 Labjack Port | Parallel Port Pin
@@ -113,3 +114,7 @@ EIO4 | Pin 6
 EIO5 | Pin 7
 EIO6 | Pin 8
 EIO7 | Pin 9
+
+This is what the other end looks like.
+![Labjacksetup](/LJ2.jpg)
+There is heat-shrink plastic over each of the ends (except for a few that I forgot).  This is an empty parallel port hub that I soldered each wire into: digital outputs into the standard parallel port data pins (2-9), and their grounds into standard parallel port ground pins (18-25).
