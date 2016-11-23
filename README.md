@@ -48,7 +48,9 @@ to an InLine script at the beginning of your experiment will call this function 
 
 Assuming there were no problems with InitLabJack, your LabJack is ready to send digital messages.  This can be achieved by calling the function:
 
-TriggerLJ(Trigger1, Trigger2 (optional), “rev_channel” (optional))
+lngError = TriggerLJ(Trigger1, Trigger2 (optional), “rev_channel” (optional))
+
+Remember here that the actual function is TriggerLJ(), but you must preface it with an lngError = for it to work.
 
 This function takes up to three parameters: 
 
@@ -61,15 +63,15 @@ This function takes up to three parameters:
 
 #Example Usage:
 
-TriggerLJ(49)
+lngError = TriggerLJ(49)
 
 will send binary 49 to ports FIO0-FIO7,
 
-TriggerLJ(49, “rev_channel_a”)
+lngError = TriggerLJ(49, “rev_channel_a”)
 
 will reverse this signal, and 
 
-TriggerLJ(49, 100, “reverse_channel_ab”)
+lngError = TriggerLJ(49, 100, “reverse_channel_ab”)
 
 will send a reversed binary 49 to FIO0-FIO7, and a reversed binary 100 to EIO0-EIO7.
 
@@ -79,7 +81,7 @@ Sleep(100)
 
 command, followed by a 
 
-TriggerLJ(0,0)
+lngError = TriggerLJ(0,0)
 
 command, which will reset all ports back to an OUTPUT-LOW status.
 
