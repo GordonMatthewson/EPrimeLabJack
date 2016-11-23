@@ -50,7 +50,7 @@ Assuming there were no problems with InitLabJack, your LabJack is ready to send 
 
 lngError = TriggerLJ(Trigger1, Trigger2 (optional), “rev_channel” (optional))
 
-Remember here that the actual function is TriggerLJ(), but you must preface it with an lngError = for it to work.
+Remember here that the actual function is TriggerLJ(), but you must preface it with an lngError = for it to work.  You don't need to write this bit before InitLabJack, just the subsequent TriggerLJ() function.
 
 This function takes up to three parameters: 
 
