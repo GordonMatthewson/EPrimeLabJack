@@ -11,8 +11,8 @@ This package is designed for use with a single Labjack U3-LV and CB15 connector,
 
 The TriggerLJ function in this package showed a maximum latency of 8 ms when using an Empirisoft millisecond keyboard (http://www.empirisoft.com/directinkb.aspx) to trigger the function in E-Prime.  Timing was measured with a black box toolkit (blackboxtoolkit.com).  If your experiment requires millisecond precision, it would be best to measure latency yourself, as unique lab setups give rise to unique latencies. 
 
-#How-to:
-##Background
+# How-to:
+## Background
 First, a quick note about how E-Prime actually works with the LabJack.  This section can be used for reference: if you’d like to skip to how to use the E-Prime functions in your experiment, go on to the "function" section below.
 
 Within E-Prime, commands to the LabJack itself are made by setting the variable “lngError” equal to a particular LabJack driver command.  For example, within the InitLabJack function,  
@@ -30,7 +30,7 @@ Error Number: 51007
 
 Which would correspond to the global constant “LJE_LABJACK_NOT_FOUND”, as this is set to 1007 under the “error codes” section of the package.
 
-##Functions
+## Functions
 
 This package contains two E-Prime functions: InitLabJack, and TriggerLJ().  Copy and paste the "EPrimeLabJack" text into the user script of E-Prime (you can get to this by pressing Alt+5).
 
@@ -61,7 +61,7 @@ This function takes up to three parameters:
 	* “rev_channel_b” : will reverse your second number
 	* “rev_channel_ab” : will reverse both numbers
 
-#Example Usage:
+# Example Usage:
 
 lngError = TriggerLJ(49)
 
@@ -85,13 +85,13 @@ lngError = TriggerLJ(0,0)
 
 command, which will reset all ports back to an OUTPUT-LOW status.
 
-#Our setup
+# Our setup
 
 This is what our setup looks like.
 ![Labjacksetup](/lj.jpg)
 Note: there are probably almost twice as many wires as there need to be: this is because the wire that was laying around our department just happened to have a ground for each wire.  I think you really only need one ground per parallel port, but from what I've heard wrapping each wire with a ground helps protect the integrity of the signal over long distances.
 
-###Parallel Port 1
+### Parallel Port 1
 Labjack Port | Parallel Port Pin
 ----------- | -----------------
 GND  | Pins 18-25
@@ -104,7 +104,7 @@ FIO5 | Pin 7
 FIO6 | Pin 8
 FIO7 | Pin 9
 
-###Parallel Port 2
+### Parallel Port 2
 Labjack Port | Parallel Port Pin
 ----------- | -----------------
 GND  | Pins 18-25
